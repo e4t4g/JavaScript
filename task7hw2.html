@@ -1,0 +1,14 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+	let a = null;
+	let b = 0;
+
+	alert (typeof(a)); //object
+	alert (typeof(b)); //number
+	alert (a===b); //false
+	alert (a>=b); //true : Операция сравнения конвертирует null в число, присваевает значение 				0 => получаем уравнение 0>=0 => true
+	alert (a<b); //false
+	alert (a==b); //false оператор == не конвертирует null в число
+
+</script>
