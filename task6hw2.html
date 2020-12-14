@@ -2,12 +2,28 @@
 <script type="text/javascript">
 
 
+	function addition (arg1,arg2) {
+		return arg1+arg2;		
+	}
+
+	function subtraction (arg1,arg2) {
+		return arg1-arg2;
+	}
+
+	function multiplication (arg1,arg2) {
+		return arg1*arg2;	
+	}
+
+		function division (arg1,arg2) {
+		return (arg1/arg2).toFixed(2);
+	}
+
 	function mathOperation(arg1, arg2, operation) {
 		switch(operation) {
-			case 'сложение': return (arg1+arg2); break;
-			case 'вычитание': return (arg1-arg2); break;
-			case 'умножение': return arg1*arg2; break;
-			case 'деление': return arg1/arg2; break;
+			case 'сложение': return addition(arg1,arg2); break;
+			case 'вычитание': return subtraction(arg1,arg2); break;
+			case 'умножение': return multiplication(arg1,arg2); break;
+			case 'деление': return division(arg1,arg2); break;
 		}
 
 	}

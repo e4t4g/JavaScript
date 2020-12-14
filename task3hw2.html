@@ -1,18 +1,19 @@
 <meta charset="utf-8">
 <script type="text/javascript">
-	
-	let a;
-	let b;
 
-		function compare(a,b) {
-			switch (true) {
-				case (a>=0 && b>=0): alert(a-b); break;
-				case (a<0 && b<0): alert(a*b); break;
-				default: alert(a+b);
-				
+	let a ;
+	let b ;
 
-			}
+	function compare (a,b) {
+		
+		if (a>=0 && b>=0) {
+			alert(a-b);
+		} else if (a<0 && b<0) {
+			alert (a*b);
+		} else {
+			alert(a+b);
 		}
+	}
 
 	compare(-3,6);
 
