@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+let basket = [
+{goods: 'Пирог', price: 50},
+{goods: 'Торт', price: 100},
+{goods:'Мороженое', price: 80},
+{goods:'Помидоры', price:40}
+]
+
+
+let basket_sum = basket.reduce(function(sum, current) {
+	return sum + current.price;
+}, 0);
+
+
+console.log(basket_sum);
+
+
+
+</script>

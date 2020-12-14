@@ -1,0 +1,17 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+	function prime(a) {	
+	CHECKING:
+	for (let i=2; i<=a; i++) {
+			for (let k = 2; k<i; k++) {
+				if (i%k===0) continue CHECKING;
+			} 
+			document.write(i + " ");
+		}
+	}
+
+	prime(100);
+
+
+</script>
