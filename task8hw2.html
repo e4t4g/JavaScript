@@ -1,0 +1,13 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+	let val;
+	let pow;
+
+	function recpow(val, pow) {
+	return (pow != 1) ? val * recpow(val, pow-1) : val; 
+	}
+
+	alert(recpow(4,3));
+
+</script>
