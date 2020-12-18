@@ -1,0 +1,37 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+	numbers = {
+		'единицы': null, 
+		'десятки': null, 
+		'сотни': null 
+	}
+
+	var x = +prompt('Введите трехзначное число или меньше.')
+
+
+	var digits = x.toString().split('');
+	var realDigits = digits.map(Number)
+
+	if (realDigits.length > 3) {
+		console.log ('Вы ввели число больще трех знаков');
+		console.log(numbers); //изменить на объект
+	} else if (realDigits.length === 3) {
+		numbers['единицы'] = realDigits[2];
+		numbers['десятки'] = realDigits[1];
+		numbers['сотни'] = realDigits[0];
+		console.log(numbers);
+	} else if (realDigits.length === 2) {
+		realDigits.unshift(null);
+		numbers['единицы'] = realDigits[2];
+		numbers['десятки'] = realDigits[1];
+		numbers['сотни'] = realDigits[0];
+		console.log(numbers);
+	} else if (realDigits.length === 1) {
+		realDigits.unshift(null,null);
+		numbers['единицы'] = realDigits[2];
+		numbers['десятки'] = realDigits[1];
+		numbers['сотни'] = realDigits[0];
+		console.log(numbers);
+}
+</script>

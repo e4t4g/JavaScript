@@ -1,0 +1,20 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+let basket = 
+MASS = [
+{goods: 'Пирог', price: 50},
+{goods: 'Торт', price: 100},
+{goods:'Мороженое', price: 80},
+{goods:'Помидоры', price:40}
+]
+FUNC: {function countBasketPrice(MASS) {
+let basket_sum = MASS.reduce(function(sum, current) {
+	return sum + current.price;
+}, 0);
+return basket_sum;
+}}
+
+console.log(countBasketPrice(basket));
+
+</script>
