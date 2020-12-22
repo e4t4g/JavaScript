@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<canvas id="makeCanvas" width="250" height="250" style="border: solid gray 3px"></canvas>
+
+<script type="text/javascript">
+	
+	    var bor = document.getElementById("makeCanvas");
+        var ctx = bor.getContext("2d");
+        var offset = 25;	
+        ctx.font = "20px Arial";
+
+
+        function drawCell(x, y, color)
+        {
+		    ctx.beginPath();
+		    ctx.rect(x, y, 25, 25);
+		    ctx.fillStyle = color;
+		    ctx.fill();
+        }
+
+        for (let p = 8, t = 2; p>0; p--, t++) {
+        	ctx.fillText(p, offset / 2 - 5, offset * t - 5);
+        	ctx.fillText(p, 230, offset * t - 5);
+        }
+
+        ctx.fillText("A", offset * 1 + 5, offset / 2 + 5);
+        ctx.fillText("B", offset * 2 + 5, offset / 2 + 5);
+        ctx.fillText("C", offset * 3 + 5, offset / 2 + 5);
+        ctx.fillText("D", offset * 4 + 5, offset / 2 + 5);
+        ctx.fillText("E", offset * 5 + 5, offset / 2 + 5);
+        ctx.fillText("F", offset * 6 + 5, offset / 2 + 5);
+        ctx.fillText("G", offset * 7 + 5, offset / 2 + 5);
+        ctx.fillText("H", offset * 8 + 5, offset / 2 + 5);
+        ctx.fillText("H", offset * 8 + 5, offset / 2 + 5);
+
+
+        for (var i = 1, k = 2; k<9; i=i+2, k=k+2) {
+		        drawCell(offset*i, offset, "lightyellow");
+		        drawCell(offset*i, offset*2, "lightgray");
+		        drawCell(offset*i, offset*3, "lightyellow");
+		        drawCell(offset*i, offset*4, "lightgray");
+		        drawCell(offset*i, offset*5, "lightyellow");
+		        drawCell(offset*i, offset*6, "lightgray");
+		        drawCell(offset*i, offset*7, "lightyellow");
+		        drawCell(offset*i, offset*8, "lightgray");
+		        drawCell(offset*k, offset, "lightgray");
+		        drawCell(offset*k, offset*2, "lightyellow");
+		        drawCell(offset*k, offset*3, "lightgray");
+		        drawCell(offset*k, offset*4, "lightyellow");
+		        drawCell(offset*k, offset*5, "lightgray");
+		        drawCell(offset*k, offset*6, "lightyellow");
+		        drawCell(offset*k, offset*7, "lightgray");
+		        drawCell(offset*k, offset*8, "lightyellow");
+        }
+
+</script>
+
+
+</body>
+</html>
