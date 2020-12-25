@@ -1,20 +1,23 @@
 <meta charset="utf-8">
 <script type="text/javascript">
 
-let basket = 
-MASS = [
-{goods: 'Пирог', price: 50},
-{goods: 'Торт', price: 100},
-{goods:'Мороженое', price: 80},
-{goods:'Помидоры', price:40}
-]
-FUNC: {function countBasketPrice(MASS) {
-let basket_sum = MASS.reduce(function(sum, current) {
-	return sum + current.price;
-}, 0);
-return basket_sum;
-}}
+const basket = {
+		products: [
+			{goods: 'Пирог', price: 50, qty: 4},
+			{goods: 'Торт', price: 100, qty: 5},
+			{goods:'Мороженое', price: 80, qty: 4},
+			{goods:'Помидоры', price:40, qty: 1}
+		],
 
-console.log(countBasketPrice(basket));
+
+		countBasketPrice() {
+			return this.products.reduce((sum, current) => {
+				return sum + current.price*current.qty;
+			
+			}, 0);
+		}
+}
+
+console.log(basket.countBasketPrice())
 
 </script>
