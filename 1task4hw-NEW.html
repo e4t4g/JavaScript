@@ -1,0 +1,19 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+		numbers = {
+		'единицы': null, 
+		'десятки': null, 
+		'сотни': null 
+	}
+
+	var x = +prompt('Введите трехзначное число или меньше.')
+
+
+		numbers['единицы'] = Math.floor(x%10);
+		numbers['десятки'] = Math.floor((x%100)/10);
+		numbers['сотни'] = Math.floor(x/100);
+
+		console.log(numbers);
+
+</script>
