@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+	<body>
+		<h2>Каталог товаров: </h2>
+		<div class="catalog"></div>
+		<hr>
+			<h2>Корзина</h2>
+			<div class="basket-list"></div>
+		<hr>
+		<button class="basket-btn">Очистить корзину</button>
+<script >
+	
+const directory = {
+    directoryBlock: null,
+    basket: null,
+    catalog: [
+        {id_goods: 1, goods_name: 'Пирог', price: 50, quantity: 1,},
+        {id_goods: 2, goods_name: 'Торт', price: 100, quantity: 1,},
+        {id_goods: 3, goods_name: 'Мороженое', price: 80, quantity: 1,},
+        {id_goods: 3, goods_name: 'Помидоры', price: 40, quantity: 1,}
+    ],
+
+    init(directoryBlockClass, basket) {
+        this.directoryBlock = document.querySelector(`.${directoryBlockClass}`);
+        this.basket = basket;
+        this.render();
+        this.addEventHandlers(); 
+    },
+
+    render() {
+        if (this.getDirectoryListLength() > 0) {
+            this.renderDirectoryList();
+        } else {
+            this.renderEmptyDirectory();
+        }
+    },
+
+    addEventHandlers() {
+        this.directoryBlock.addEventListener('click', event => this.addToBasket(event));
+    },
+
+    addToBasket(event) {
+        if (!event.target.classList.contains('goods__add-to-basket')) return;
+        const id_goods = +event.target.dataset.id_goods;
+        this.basket.addToBasket(id_goods);
+    },
+
+    getDirectoryListLength() {
+        return this.catalog.length;
+    },
+
+
+    renderDirectoryList() {
+        this.directoryBlock.innerHTML = '';
+        this.catalog.forEach(item => {
+            this.directoryBlock.insertAdjacentHTML('beforeend', this.renderDirectoryItem(item));
+        });
+    },
+
+    renderDirectoryItem(item) {
+        return `<div class="goods">
+                <h3><b>Наименование</b>: ${item.goods_name}</h3>
+                <p>Цена за шт.</b>: ${item.price} руб.</p>
+                <button class="goods__add-to-basket" data-id_goods="${item.id_goods}">Добавить в корзину</button>
+            </div>`;
+    },
+
+    renderEmptyDirectory() {
+        this.directoryBlock.innerHTML = '';
+        this.directoryBlock.insertAdjacentHTML('beforeend', `Каталог пустой.`);
+    },
+};
+
+const basket = {
+    basketBlock: null,
+    basketButton: null,
+    basketIdCount: null,
+    directoryCatalog: [], 
+    products: [],
+
+     renderBasketItem(item) {
+        return `<div>
+                <h3><b>Наименование</b>: ${item.goods_name}</h3>
+                <p><b>Цена за шт.</b>: ${item.price} руб.</p>
+                <p><b>Количество</b>: ${item.quantity} шт.</p>
+                </div>`;
+     },
+
+    init(basketBlock, basketButton, directoryCatalog) {
+        this.basketBlock = document.querySelector(`.${basketBlock}`);
+        this.basketButton = document.querySelector(`.${basketButton}`);
+        this.directoryCatalog = directoryCatalog;
+        this.addEventHandlers();
+        this.render();
+    },
+
+    addEventHandlers() {
+        this.basketButton.addEventListener('click', this.dropBasket.bind(this));
+    },
+
+    dropBasket() {
+        this.products = [];
+        this.render();
+    },
+
+    render() {
+        if (this.getBasketGoodsLength() > 0) {
+            this.renderBasketList();
+        } else {
+            this.renderEmptyBasket();
+        }
+    },
+
+    findGoods(id_goods) {
+        return this.directoryCatalog.find(goods => goods.id_goods === id_goods);
+    },
+
+
+    addToBasket(id_goods) {
+    	const goods = this.findGoods(id_goods);
+    		if (goods) {
+		      let good = this.products.find(item => item.goods_name === goods.goods_name);
+		      good && good.quantity++ ||this.products.push({ ...goods });
+		      this.render();
+		    } else {
+		      alert("Ошибка");
+		    }
+  	},
+    
+    getBasketGoodsLength() {
+        return this.products.length;
+    },
+
+    renderEmptyBasket() {
+        this.basketBlock.innerHTML = '';
+        this.basketBlock.insertAdjacentHTML('beforeend', 'Корзина пуста.');
+    },
+
+
+	totalPrice() {
+    return this.products.reduce((sum, item) => {
+      return sum + item.price * item.quantity;
+    	}, 0);
+  	},
+
+    renderBasketList() {
+        this.basketBlock.innerHTML = '';
+        this.products.forEach(item => {
+            this.basketBlock.insertAdjacentHTML('beforeend', this.renderBasketItem(item));
+        });
+        this.basketBlock.insertAdjacentHTML('beforeend', `<h3><b>Товаров в корзине на общую сумму:</b></h32> ${basket.totalPrice()}`);
+    },
+
+};
+
+directory.init('catalog', basket);
+basket.init('basket-list', 'basket-btn', directory.catalog);
+
+
+	
+</script>
+</body>
+</html> 
